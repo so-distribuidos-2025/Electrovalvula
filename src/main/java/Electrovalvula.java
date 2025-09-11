@@ -23,6 +23,9 @@ public class Electrovalvula{
         estaAbierta = false;
     }
 
+
+
+
     @Override
     public String toString() {
         return "Electrovalvula{" + "estaAbierta=" + estaAbierta + '}';

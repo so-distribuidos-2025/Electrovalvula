@@ -27,8 +27,8 @@ public class HiloServerRMI extends Thread{
     @Override
     public void run(){
         try {
-            LocateRegistry.createRegistry(1099);
-            Naming.rebind("rmi://localhost:1099/ServerRMI", server);                        
+            LocateRegistry.createRegistry(20001);
+            Naming.rebind("rmi://localhost:20001/ServerRMI", server);
         } catch (RemoteException ex) {
             Logger.getLogger(HiloServerRMI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {

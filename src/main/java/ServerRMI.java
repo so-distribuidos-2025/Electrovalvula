@@ -13,23 +13,21 @@ import java.rmi.server.UnicastRemoteObject;
  * @author lesca
  */
 public class ServerRMI extends UnicastRemoteObject implements IServerRMI{
-    
-    double temperatura;
+
+    boolean estaAbierta;
     
     public ServerRMI() throws RemoteException{
         super();
     }
 
-    public double getTemperatura() {
+    /*public double getTemperatura() {
         return temperatura;
-    }
-    
-    
+    }*/
+
+
 
     @Override
-    public void DameTemperatura(double temperatura) throws RemoteException {
-        this.temperatura = temperatura;
+    public void abrir(boolean abrir) throws RemoteException {
+        this.estaAbierta = abrir;
     }
-    
-    
 }
