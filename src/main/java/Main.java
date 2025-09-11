@@ -27,10 +27,6 @@ public class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
-
-
-
         //ev.abrir();
 
         System.out.printf(ev.toString());
