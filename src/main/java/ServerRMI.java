@@ -15,19 +15,30 @@ import java.rmi.server.UnicastRemoteObject;
 public class ServerRMI extends UnicastRemoteObject implements IServerRMI{
 
     boolean estaAbierta;
+    int id;
     
-    public ServerRMI() throws RemoteException{
+    public ServerRMI(int id) throws RemoteException{
         super();
+        this.id = id;
     }
 
     /*public double getTemperatura() {
         return temperatura;
     }*/
 
-
+    @Override
+    public boolean estaAbierta() throws RemoteException {
+        return estaAbierta;
+    }
 
     @Override
-    public void abrir(boolean abrir) throws RemoteException {
-        this.estaAbierta = abrir;
+    public void abrirValvula() throws RemoteException {
+        this.estaAbierta = true;
+        System.out.printf("Se abrió la electrovalvula %d\n", id);
+    }
+
+    public void cerrarValvula() throws RemoteException {
+        this.estaAbierta = false;
+        System.out.printf("Se cerró la electrovalvula %d\n", id);
     }
 }

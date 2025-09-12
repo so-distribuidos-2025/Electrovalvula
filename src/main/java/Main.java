@@ -8,19 +8,16 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    private int id = 1;
-
-
     public static void main(String[] args) {
-
+        int id = Integer.parseInt(args[0]);
         ServerRMI server = null;
         Electrovalvula ev = new Electrovalvula();
 
         System.out.println(ev.toString());
 
         try {
-            server = new ServerRMI();
-            HiloServerRMI hServer = new HiloServerRMI(server);
+            server = new ServerRMI(id);
+            HiloServerRMI hServer = new HiloServerRMI(server, id);
             hServer.start();
         } catch (RemoteException ex) {
             //throw new RuntimeException(ex);

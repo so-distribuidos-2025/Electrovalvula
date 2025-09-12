@@ -19,16 +19,19 @@ import java.util.logging.Logger;
 public class HiloServerRMI extends Thread{
     
     IServerRMI server;
+    int id;
     
-    public HiloServerRMI(IServerRMI s){
-        server = s;
+    public HiloServerRMI(IServerRMI s, int id){
+        this.server = s;
+        this.id = id;
     }
     
     @Override
     public void run(){
         try {
-            LocateRegistry.createRegistry(20001);
-            Naming.rebind("rmi://localhost:20001/ServerRMI", server);
+            int port = 21000 + this.id;
+            LocateRegistry.createRegistry(port);
+            Naming.rebind(String.format("rmi://localhost:%d/ServerRMI",port), server);
         } catch (RemoteException ex) {
             Logger.getLogger(HiloServerRMI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {

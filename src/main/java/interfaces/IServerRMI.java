@@ -12,5 +12,7 @@ import java.rmi.RemoteException;
  * @author lesca
  */
 public interface IServerRMI extends Remote {
-    void abrir(boolean ordenValvula) throws RemoteException;
+    void abrirValvula() throws RemoteException;
+    void cerrarValvula() throws RemoteException;
+    boolean estaAbierta() throws RemoteException;
 }
