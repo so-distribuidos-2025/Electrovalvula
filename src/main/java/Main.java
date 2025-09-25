@@ -44,9 +44,6 @@ public class Main {
         // Se crea una electrovalvula simulada
         Electrovalvula ev = new Electrovalvula();
 
-        // Se imprime el estado inicial de la electrovalvula
-        System.out.println(ev.toString());
-
         try {
             // Se instancia el servidor RMI pasando el identificador
             server = new ServerRMI(id);

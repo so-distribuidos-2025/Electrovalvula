@@ -8,6 +8,9 @@ import interfaces.IServerRMI;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Implementación del servidor RMI que representa una {@code Electrovalvula}.
  * <p>
@@ -70,7 +73,7 @@ public class ServerRMI extends UnicastRemoteObject implements IServerRMI {
     @Override
     public void abrirValvula() throws RemoteException {
         this.estaAbierta = true;
-        System.out.printf("Se abrió la electrovalvula %d\n", id);
+        System.out.printf("%s | Se abrió la electrovalvula %d\n", this.getTiempo(), id);
     }
 
     /**
@@ -80,6 +83,12 @@ public class ServerRMI extends UnicastRemoteObject implements IServerRMI {
      */
     public void cerrarValvula() throws RemoteException {
         this.estaAbierta = false;
-        System.out.printf("Se cerró la electrovalvula %d\n", id);
+        System.out.printf("%s | Se cerró la electrovalvula %d\n", this.getTiempo(), id);
+    }
+
+    private String getTiempo(){
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm:ss");
+        return myDateObj.format(myFormatObj);
     }
 }
