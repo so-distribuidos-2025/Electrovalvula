@@ -63,14 +63,24 @@ public class HiloServerRMI extends Thread {
     @Override
     public void run() {
         try {
-            // Calcula el puerto dinámico
-            int port = 21000 + this.id;
+
+            String portEnv = System.getenv("VALVULA_BASE_PORT");
+            if (portEnv == null) {
+                portEnv = "21000";
+            }
+
+            int port = Integer.parseInt(portEnv);
+
+            port += this.id;
 
             // Crea el registro RMI en el puerto calculado
             LocateRegistry.createRegistry(port);
 
-            // Publica el servidor remoto en el registro
-            Naming.rebind(String.format("rmi://localhost:%d/ServerRMI", port), server);
+            String hostname = System.getenv("HOSTNAME");
+            if (hostname == null) {
+                hostname = "localhost";
+            }
+            Naming.rebind(String.format("rmi://%s:%d/ServerRMI", hostname, port), server);
 
         } catch (RemoteException ex) {
             Logger.getLogger(HiloServerRMI.class.getName()).log(Level.SEVERE, 
