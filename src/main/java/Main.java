@@ -56,11 +56,5 @@ public class Main {
             // Manejo de error en caso de que no pueda crearse el servidor RMI
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        // Ejemplo de acción sobre la electrovalvula (comentado):
-        // ev.abrir();
-
-        // Se imprime nuevamente el estado actual de la electrovalvula
-        System.out.printf(ev.toString());
     }
 }

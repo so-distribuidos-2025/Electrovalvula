@@ -72,8 +72,10 @@ public class ServerRMI extends UnicastRemoteObject implements IServerRMI {
      */
     @Override
     public void abrirValvula() throws RemoteException {
-        this.estaAbierta = true;
-        System.out.printf("%s | Se abrió la electrovalvula %d\n", this.getTiempo(), id);
+        if (!this.estaAbierta) {
+            this.estaAbierta = true;
+            System.out.printf("%s | Se abrió la electrovalvula %d\n", this.getTiempo(), id);
+        }
     }
 
     /**
@@ -82,8 +84,10 @@ public class ServerRMI extends UnicastRemoteObject implements IServerRMI {
      * @throws RemoteException si ocurre un error en la invocación remota.
      */
     public void cerrarValvula() throws RemoteException {
-        this.estaAbierta = false;
-        System.out.printf("%s | Se cerró la electrovalvula %d\n", this.getTiempo(), id);
+        if (this.estaAbierta) {
+            this.estaAbierta = false;
+            System.out.printf("%s | Se cerró la electrovalvula %d\n", this.getTiempo(), id);
+        }
     }
 
     private String getTiempo(){
